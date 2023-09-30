@@ -1,0 +1,5 @@
+g++ -std=c++17 -pedantic -Wall task0.cpp -o task0   - kompiliruem
+
+./task0   - zapusk
+
+touch commands.txt   - sozdaem file
