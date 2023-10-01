@@ -35,9 +35,6 @@ int main() {
             }
         }
     }
-    //for (int j = 0; j < count; j++) {
-    //    cout << y[j].ship_id << ' ' << y[j].run_id << ' ' << y[j].time_stamp << ' ' << y[j].event_type << '\n';
-    //}
     bool flag = true;
     for (int j = 0; j < count; j++) {
         if (not(y[j].event_type == k)) {
