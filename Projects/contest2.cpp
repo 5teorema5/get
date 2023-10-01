@@ -1,41 +1,57 @@
 #include <iostream>
 using namespace std;
 
-struct data()
+struct Blank
 {
-    /* data */
+    unsigned long ship_id;
+    unsigned long run_id;
+    unsigned long time_stamp;
+    int event_type;
 };
-
+Blank x[10000], y[10000], z;
 
 int main() {
-    long N, x[4][10000] = {{0}}, y[4][10000] = {{0}}, id, z[4] = {0};
+    long N, count = 0, k = 0;
     cin >> N;
     for (long i = 0; i < N; i++) {
-        cin >> x[0][i] >> x[1][i] >> x[2][i] >> x[3][i];
+        Blank a;
+        cin >> a.ship_id >> a.run_id >> a.time_stamp >> a.event_type;
+        x[i] = a;
     }
+    unsigned long id;
     cin >> id;
-    for (long i = 0; i < N; i++) {
-        if (id == x[0][i]) {
-            y[0][i] = x[0][i];
-            y[1][i] = x[1][i];
-            y[2][i] = x[2][i];
-            y[3][i] = x[3][i];
+    for (int i = 0; i < N; i++) {
+        if (x[i].ship_id == id) {
+            y[count] = x[i];
+            count += 1;
         }
     }
-    for (int i = 0; i < N; i ++) {
-        for (int j = 0; j < N-1; j++) {
-            if (x[2][i] > x[2][i+1]) {
-                z[0] = x[0][i];
-                z[1] = x[1][i];
-                z[2] = x[2][i];
-                z[3] = x[3][i];
-                x[0][i] = 
+    for (int i = 0; i < count; i++) {
+        for (int j = 0; j < count-1; j++) {
+            if (y[j].time_stamp > y[j+1].time_stamp) {
+                z = y[j];
+                y[j] = y[j+1];
+                y[j+1] = z;
             }
         }
     }
-    
-    for (long i = 0; i < N; i++) {
-        cout << y[0][i] << " " << y[1][i] << ' ' << y[2][i] << ' ' << y[3][i];
+    //for (int j = 0; j < count; j++) {
+    //    cout << y[j].ship_id << ' ' << y[j].run_id << ' ' << y[j].time_stamp << ' ' << y[j].event_type << '\n';
+    //}
+    bool flag = true;
+    for (int j = 0; j < count; j++) {
+        if (not(y[j].event_type == k)) {
+            flag = false;
+            cout << "NO";
+            break;
+        }
+        k += 1;
+        if (y[j].run_id != y[j+1].run_id) {
+            k = 0;
+        }
+    }
+    if (flag) {
+        cout << "YES";
     }
     return 0;
 }
